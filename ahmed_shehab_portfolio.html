@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f7fb">
+<title>Ahmed Shehab | Civil Engineer Portfolio</title>
+<script>
+  // Apply the saved theme before the page paints to avoid a flash.
+  (() => {
+    let saved = "system";
+    try { saved = localStorage.getItem("portfolio-theme") || "system"; } catch (_) {}
+    const dark = saved === "dark" ||
+      (saved === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    document.documentElement.dataset.themeMode = saved;
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --bg:#f4f7fb; --surface:#fff; --surface-alt:#eaf0f7;
+  --text:#172b45; --muted:#64748b; --primary:#173b65;
+  --secondary:#36749b; --accent:#0d9488; --border:#dce4ed;
+  --shadow:0 12px 34px rgba(23,59,101,.09);
+  --button:#173b65; --button-text:#fff;
+  --gradient:linear-gradient(130deg,#173b65,#36749b 58%,#0d9488);
+  --transition:260ms ease;
+}
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#0b1220; --surface:#151f30; --surface-alt:#1d2b40;
+  --text:#f1f5f9; --muted:#a8b6c8; --primary:#8fc5ed;
+  --secondary:#8cc7e8; --accent:#2dd4bf; --border:#304158;
+  --shadow:0 12px 34px rgba(0,0,0,.28);
+  --button:#25618e; --button-text:#fff;
+  --gradient:linear-gradient(130deg,#132d4d,#245d83 58%,#087e78);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.65;transition:background var(--transition),color var(--transition)}
+a{color:var(--secondary);text-decoration:none}
+a:hover{color:var(--accent)}
+button,select{font:inherit}
+button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.container{width:min(1120px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-weight:800;letter-spacing:.04em;color:var(--text)}
+.navlinks{display:flex;align-items:center;gap:22px}
+.navlinks a{font-size:.92rem;color:var(--muted);font-weight:600}
+.theme-select{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:9px 12px}
+.hero{background:var(--gradient);color:white;padding:92px 0 84px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid #ffffff30;border-radius:50%;right:-120px;top:-170px;box-shadow:0 0 0 45px #ffffff0b,0 0 0 95px #ffffff08}
+.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:800;color:#bdece5}
+h1{font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.06;margin:12px 0 18px;letter-spacing:-.045em}
+.hero p{max-width:720px;color:#e1edf5;font-size:1.12rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:999px;font-weight:700;border:1px solid transparent;cursor:pointer}
+.btn-light{background:white;color:#173b65}
+.btn-outline{border-color:#ffffff90;color:white;background:transparent}
+section{padding:76px 0}
+.section-head{margin-bottom:30px}
+.kicker{color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin:7px 0 10px;letter-spacing:-.03em}
+.lead{color:var(--muted);max-width:760px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:23px;box-shadow:var(--shadow);transition:transform var(--transition),background var(--transition),border-color var(--transition)}
+.card:hover{transform:translateY(-4px)}
+.card h3{margin:0 0 8px;font-size:1.12rem}
+.card p{margin:0;color:var(--muted)}
+.icon{width:42px;height:42px;border-radius:12px;background:var(--surface-alt);display:grid;place-items:center;color:var(--accent);font-weight:900;margin-bottom:15px}
+.about-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:start}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat{padding:18px;border-radius:15px;background:var(--surface-alt);border:1px solid var(--border)}
+.stat strong{display:block;font-size:1.7rem;color:var(--primary)}
+.stat span{font-size:.88rem;color:var(--muted)}
+.timeline{display:grid;gap:16px}
+.role{border-left:3px solid var(--accent);padding:2px 0 4px 20px}
+.role .date{font-size:.83rem;color:var(--accent);font-weight:800}
+.role h3{margin:3px 0}
+.role p{margin:4px 0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.tag{background:var(--surface-alt);border:1px solid var(--border);padding:7px 11px;border-radius:999px;font-size:.88rem;color:var(--text)}
+.project-card{display:flex;flex-direction:column;min-height:220px}
+.project-card .meta{margin-top:auto;padding-top:18px;color:var(--accent);font-size:.84rem;font-weight:800}
+.contact{background:var(--surface-alt);border-top:1px solid var(--border)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-item{padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow-wrap:anywhere}
+footer{padding:24px 0;color:var(--muted);font-size:.88rem}
+.small-note{font-size:.84rem;color:var(--muted)}
+@media(max-width:800px){.navlinks{display:none}.grid{grid-template-columns:repeat(2,1fr)}.about-layout{grid-template-columns:1fr}}
+@media(max-width:560px){.container{width:min(100% - 28px,1120px)}.hero{padding:70px 0}.grid,.stats,.contact-grid{grid-template-columns:1fr}section{padding:58px 0}.nav{height:64px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">AHMED SHEHAB<span style="color:var(--accent)">.</span></a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </nav>
+    <select class="theme-select" id="theme-select" aria-label="Choose theme">
+      <option value="light">☀ Light</option>
+      <option value="dark">☾ Dark</option>
+      <option value="system">▣ System</option>
+    </select>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="eyebrow">Civil Engineer · Infrastructure · Marine Works</div>
+      <h1>Ahmed Shehab</h1>
+      <p>Second Engineer at Arab Contractors with 8 years of experience across construction, geotechnical engineering, port works and major transportation infrastructure.</p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#projects">Explore Projects</a>
+        <a class="btn btn-outline" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head"><div class="kicker">Profile</div><h2>Engineering experience built on major projects</h2><p class="lead">A civil engineering professional with practical experience in construction sites, geotechnical works, marine infrastructure and transportation projects.</p></div>
+      <div class="about-layout">
+        <article class="card">
+          <h3>About Me</h3>
+          <p>I graduated with a Bachelor of Science in Civil Engineering from Port Said University in 2018. My experience includes site construction, geotechnical engineering, project coordination and work on large-scale infrastructure developments.</p>
+          <p class="small-note" style="margin-top:12px">Professional summary based on the supplied CV. Project descriptions and figures should be confirmed before public release.</p>
+        </article>
+        <div class="stats">
+          <div class="stat"><strong>8 Years</strong><span>Professional experience (as stated in CV)</span></div>
+          <div class="stat"><strong>2018</strong><span>B.Sc. Civil Engineering</span></div>
+          <div class="stat"><strong>Very Good</strong><span>Graduation grade with Honor</span></div>
+          <div class="stat"><strong>Port Said</strong><span>University and professional base</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-head"><div class="kicker">Career</div><h2>Professional Experience</h2><p class="lead">Selected roles and project assignments listed in the supplied résumé.</p></div>
+      <div class="timeline">
+        <article class="role"><div class="date">2021 – Present · The Arab Contractors</div><h3>Geotechnical Engineer · Major Infrastructure</h3><p>Assignments include the 6th of October Monorail, New Delta works, Damietta Port and other major infrastructure projects.</p></article>
+        <article class="role"><div class="date">2022 – 2023 · Damietta, Egypt</div><h3>Tahya Misr Container Terminal</h3><p>Geotechnical engineering involvement in quay-wall construction, dredging, diaphragm walls, barrettes, piles, beams, slabs and excavation works.</p></article>
+        <article class="role"><div class="date">2024 · Egypt</div><h3>Abu Qir Bridge</h3><p>Geotechnical engineering assignment on the bridge connecting Abu Qir city and the port.</p></article>
+        <article class="role"><div class="date">Dates to confirm · Ain Sokhna, Egypt</div><h3>Ain Sokhna Port</h3><p>Quay construction assignment, with a reported total quay length of 900 metres.</p></article>
+        <article class="role"><div class="date">2021 · El Dabaa, Egypt</div><h3>New Delta Project</h3><p>Geotechnical engineering work associated with a major water-treatment and transfer infrastructure development.</p></article>
+        <article class="role"><div class="date">2019 – 2020 · Port Said, Egypt</div><h3>Site Engineer · Residential Construction</h3><p>Site engineering roles with El Hosary and Eida for Construction, including residential building projects and supervision of construction activities.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head"><div class="kicker">Selected Work</div><h2>Featured Projects</h2><p class="lead">A selection of marine, rail and civil infrastructure projects from the professional résumé.</p></div>
+      <div class="grid">
+        <article class="card project-card"><div class="icon">⚓</div><h3>Tahya Misr Container Terminal</h3><p>Damietta Port · Quay walls, dredging, diaphragm walls, barrettes, piles and terminal infrastructure.</p><div class="meta">Marine Infrastructure</div></article>
+        <article class="card project-card"><div class="icon">🚝</div><h3>6th of October Monorail</h3><p>West Nile Line connecting 6th of October City with Giza. The CV reports an approximate route length of 44 km and 12 stations.</p><div class="meta">Transportation Infrastructure</div></article>
+        <article class="card project-card"><div class="icon">🌊</div><h3>Ain Sokhna Port</h3><p>Quay construction assignment with a reported total length of approximately 900 metres.</p><div class="meta">Port Works</div></article>
+        <article class="card project-card"><div class="icon">🚆</div><h3>High-Speed Electric Train</h3><p>Egyptian route connecting Ain Sokhna, the New Administrative Capital, Alamein and Marsa Matrouh; approximately 660 km as stated in the CV.</p><div class="meta">Rail Infrastructure · 2026</div></article>
+        <article class="card project-card"><div class="icon">🌱</div><h3>New Delta Project</h3><p>Water-treatment and transfer infrastructure supporting agricultural land reclamation in the New Delta.</p><div class="meta">Water Infrastructure</div></article>
+        <article class="card project-card"><div class="icon">🌉</div><h3>Abu Qir Bridge</h3><p>Bridge construction project connecting Abu Qir city and the port.</p><div class="meta">Bridge & Civil Works</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="section-head"><div class="kicker">Capabilities</div><h2>Skills & Qualifications</h2><p class="lead">Technical and professional capabilities stated in the supplied résumé.</p></div>
+      <div class="grid">
+        <article class="card"><div class="icon">01</div><h3>Engineering</h3><p>Site construction works, geotechnical engineering works and infrastructure project execution.</p></article>
+        <article class="card"><div class="icon">02</div><h3>Project Management</h3><p>Project planning, project control, financial budgeting, procurement and contracts management.</p></article>
+        <article class="card"><div class="icon">03</div><h3>Software & Tools</h3><p>PRIMAVERA, AutoCAD 2D, SAP (Basic), ICDL.</p></article>
+      </div>
+      <div class="tags">
+        <span class="tag">Geotechnical Engineering</span><span class="tag">Marine Works</span><span class="tag">Quay Walls</span><span class="tag">Site Supervision</span><span class="tag">Project Planning</span><span class="tag">Procurement</span><span class="tag">Contracts</span><span class="tag">AutoCAD 2D</span><span class="tag">PRIMAVERA</span>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <h3>Languages</h3>
+        <p>Arabic — Native · English — Good · French — Beginner</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head"><div class="kicker">Contact</div><h2>Let’s connect</h2><p class="lead">For professional opportunities and engineering collaborations.</p></div>
+      <div class="contact-grid">
+        <div class="contact-item"><strong>Email</strong><br><a href="mailto:ahmedshehab241@gmail.com">ahmedshehab241@gmail.com</a></div>
+        <div class="contact-item"><strong>Phone</strong><br><a href="tel:+201116746607">+20 111 674 6607</a></div>
+        <div class="contact-item"><strong>Location</strong><br>Port Said, Egypt</div>
+        <div class="contact-item"><strong>Education</strong><br>Port Said University · Civil Engineering · 2018</div>
+      </div>
+      <p class="small-note" style="margin-top:14px">The second phone number in the CV was marked “W”; confirm whether it is suitable for public display before publishing.</p>
+    </div>
+  </section>
+</main>
+<footer><div class="container">© <span id="year"></span> Ahmed Shehab · Civil Engineer Portfolio</div></footer>
+
+<script>
+(() => {
+  const key = "portfolio-theme";
+  const select = document.getElementById("theme-select");
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function savedMode() {
+    try { return localStorage.getItem(key) || "system"; }
+    catch (_) { return "system"; }
+  }
+  function apply(mode, persist = true) {
+    const resolved = mode === "system" ? (media.matches ? "dark" : "light") : mode;
+    document.documentElement.dataset.theme = resolved;
+    document.documentElement.dataset.themeMode = mode;
+    select.value = mode;
+    if (persist) {
+      try { localStorage.setItem(key, mode); } catch (_) {}
+    }
+  }
+  let mode = savedMode();
+  apply(mode, false);
+  select.addEventListener("change", () => {
+    mode = select.value;
+    apply(mode);
+  });
+  media.addEventListener("change", () => {
+    if (mode === "system") apply("system", false);
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
